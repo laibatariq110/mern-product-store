@@ -4,24 +4,51 @@ export const useProductStore = create((set) => ({
   products: [],
   setProducts: (products) => set({ products }),
   createProduct: async (newProduct) => {
-    if (!newProduct.name || !newProduct.image || !newProduct.price) {
+    const productToCreate = {
+      name: newProduct.name.trim(),
+      price: newProduct.price,
+      image: newProduct.image.trim(),
+    };
+
+    if (
+      !productToCreate.name ||
+      !productToCreate.image ||
+      !productToCreate.price
+    ) {
       return { success: false, message: "Please fill in all fields." };
     }
+
     const res = await fetch("/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify(productToCreate),
     });
+
     const data = await res.json();
+
+    if (!res.ok || !data.success || !data.data) {
+      return {
+        success: false,
+        message: data.message || "Failed to create product.",
+      };
+    }
+
     set((state) => ({ products: [...state.products, data.data] }));
     return { success: true, message: "Product created successfully." };
   },
   fetchProducts: async () => {
     const res = await fetch("/api/products");
     const data = await res.json();
+
+    if (!res.ok || !data.success || !Array.isArray(data.data)) {
+      set({ products: [] });
+      return { success: false, message: data.message || "Failed to load products." };
+    }
+
     set({ products: data.data });
+    return { success: true };
   },
   deleteProducts: async (pid) => {
     const res = await fetch(`/api/products/${pid}`, {

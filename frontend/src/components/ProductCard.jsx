@@ -23,6 +23,17 @@ import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useProductStore } from "../store/product";
 import { useState } from "react";
 
+const fallbackImage =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+      <rect width="600" height="400" fill="#EDF2F7" />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#4A5568" font-family="Arial, sans-serif" font-size="28">
+        Image unavailable
+      </text>
+    </svg>
+  `);
+
 const ProductCard = ({ product }) => {
   const [updatedProduct, setUpdatedProduct] = useState(product)
   const textColor = useColorModeValue("gray.600", "gray.200");
@@ -87,6 +98,7 @@ const ProductCard = ({ product }) => {
     >
       <Image
         src={product.image}
+        fallbackSrc={fallbackImage}
         alt={product.name}
         h={48}
         w={"full"}
