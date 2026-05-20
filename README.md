@@ -8,11 +8,9 @@ Live Demo: `[https://mern-product-store-q9i0.onrender.com/]`
 
 ## Screenshots
 
-```md
 ![Home Page](./screenshots/home-page.png)
 ![Create Product Page](./screenshots/create-product.png)
 ![Edit Product Modal](./screenshots/edit-product.png)
-```
 
 ## Tech Stack
 
