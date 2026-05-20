@@ -4,12 +4,17 @@ A simple full-stack product store built with the MERN stack. Users can view prod
 
 ## Preview
 
-Live Demo: `[https://mern-product-store-q9i0.onrender.com/]`
+Live Demo: [mern-product-store-q9i0.onrender.com](https://mern-product-store-q9i0.onrender.com/)
 
 ## Screenshots
 
+### Home Page
 ![Home Page](./screenshots/home-page.png)
+
+### Create Product Page
 ![Create Product Page](./screenshots/create-product.png)
+
+### Edit Product Modal
 ![Edit Product Modal](./screenshots/edit-product.png)
 
 ## Tech Stack
